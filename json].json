@@ -1,11 +1,11 @@
 {
     "atendimentoDiario":[
         {
-            "uuid": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
+            "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
             "intervalos": [{"inicio": "09:30", "fim": "10:10"}, {"inicio": "10:30", "fim": "11:10"}]
         },
         {
-            "uuid": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
+            "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
             "intervalos": [{"inicio": "09:30", "fim": "10:10"}, {"inicio": "10:30", "fim": "11:10"}]
         }
     ],
@@ -13,21 +13,21 @@
         {
             "SEGUNDA": [
                 {
-                    "uuid": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
+                    "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
                     "intervalos": [{"inicio": "09:30", "fim": "10:10"}, {"inicio": "10:30", "fim": "11:10"}]
                 }
             ],
             "TERÇA": [
                 {
-                    "uuid": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
+                    "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
                     "intervalos": [{"inicio": "09:30", "fim": "10:10"}, {"inicio": "10:30", "fim": "11:10"}]
                 }
             ]
         },
-    "diaEspecifico":{
+    "atendimentoDiaEspecifico":{
         "2021-10-29": [
             {
-                "uuid":"",
+                "id":"",
                 "intervalos":[{"inicio": "09:30", "fim": "10:10"}, {"inicio": "10:30", "fim": "11:10"}]
             }
         ]
