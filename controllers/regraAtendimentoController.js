@@ -21,40 +21,31 @@ module.exports = {
     create(req, res) {
         try {
             const { atendimentoDiario, atendimentoSemanal, diaEspecifico } = req.body
-            if (atendimentoDiario.intervalos) {
-                fs.writeFile(arquivoRegraAtendimento, JSON.stringify({ atendimentoDiario: atendimentoDiario }), (err) => {
-                    if (err) {
-                        console.error(err)
-                        return res.status(500).send()
-                    }
-                    return res.status(200).send('funcioniu')
-                });
-            }
         } catch (error) {
             console.error(error)
             return res.status(500).send({ errors: [{ msg: MESSAGES.INTERNAL_SERVER_ERROR }] })
         }
     },
 
-    delete(req, res){
+    async delete(req, res){
         try {
             const objRegraAtendimento = await JSON.parse(fs.readFileSync(arquivoRegraAtendimento, 'utf8'));
             const {id} = req.params
-            let removido = false 
-            objRegraAtendimento.atendimentoDiario.forEach((regraAtendimento, index) => { 
+            let removido = objRegraAtendimento.atendimentoDiario.find((regraAtendimento, index) => {
                 if(regraAtendimento.id === id) {
-                    objRegraAtendimento.splice(index, 1)
-                    removido = true
-                    break
+                    objRegraAtendimento.atendimentoDiario.splice(index, 1)
+                    return true
+                }else{
+                    return false
                 }
             })
             if(removido){
                 
             }
             Object.keys(objRegraAtendimento.atendimentoSemanal).forEach((dia) => {
-                dia.forEach((regraAtendimento, index) => { 
+                objRegraAtendimento.atendimentoSemanal[dia].forEach((regraAtendimento, index) => { 
                     if(regraAtendimento.id === id) {
-                        objRegraAtendimento.splice(index, 1)
+                        objRegraAtendimento.atendimentoSemanal[dia].splice(index, 1)
                         removido = true
                     }
                 })
@@ -62,15 +53,16 @@ module.exports = {
             if(removido){
                 
             }
-            Object.keys(objRegraAtendimento.atendimentoDiaEspecifico).forEach((dia) => {
-                dia.forEach((regraAtendimento, index) => { 
+            removido = Object.keys(objRegraAtendimento.atendimentoDiaEspecifico).find((dia) => 
+            objRegraAtendimento.atendimentoDiaEspecifico[dia].forEach((regraAtendimento, index) => { 
                     if(regraAtendimento.id === id) {
-                        objRegraAtendimento.splice(index, 1)
-                        removido = true
-                        break
+                        objRegraAtendimento.atendimentoDiaEspecifico[dia].splice(index, 1)
+                        return true
+                    }else{
+                        return false
                     }
                 })
-            })
+            )
             if(removido){
                 
             }
