@@ -3,5 +3,6 @@ const regraAtendimentoController = require('../controllers/regraAtendimentoContr
 const router = Router()
 
 router.get('/', regraAtendimentoController.index)
+router.post('/', regraAtendimentoController.create)
 
 module.exports = router

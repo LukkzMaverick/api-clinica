@@ -1,0 +1,170 @@
+openapi: 3.0.0
+info:
+  title: "Clinica API"
+  description: ""
+  version: 0.1.9
+paths:
+  /regraAtendimento:
+    post:
+      description: Realiza cadastro de regra de atendimento, uma por vez. De acordo com o tipo de atendimento os parametros do body mudam, olhar schema para mais informações
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - tipo
+                - intervalos
+              properties:
+                tipo:
+                  type: string
+                  enum: [ATENDIMENTO_DIARIO, ATENDIMENTO_SEMANAL, ATENDIMENTO_DIA_ESPECIFICO]
+                  example: ATENDIMENTO_SEMANAL
+                dia:
+                  type: string 
+                  enum: [DOMINGO, SEGUNDA, TERÇA, QUARTA, QUINTA, SEXTA, SÁBADO]
+                  description: (SOMENTE PARA ATENDIMENTO_SEMANAL) Dia da semana do atendimento
+                  example: SEGUNDA
+                data: 
+                  type: string
+                  description: (SOMENTE PARA ATENDIMENTO_DIA_ESPECIFICO) Data de atendimento no formato DD-MM-YYYY
+                  example: 25-01-2018
+                intervalos:
+                  $ref: "#/components/schemas/intervalos"
+      responses:
+        '204':    
+          description: Sucesso.
+          content:
+            application/json: {}                      
+    get:
+      description: Recupera todas as regras de atendimento já cadastradas.
+      responses:
+        '200':    
+          description: Sucesso.
+          content:
+            application/json: 
+              schema: 
+                type: object
+                properties:
+                  atendimentoDiario: 
+                    type: array
+                    items: 
+                      $ref: "#/components/schemas/atendimentoObjeto"
+                  atendimentoSemanal: 
+                    type: object
+                    properties:
+                      DOMINGO: 
+                        type: array
+                        items: 
+                          $ref: "#/components/schemas/atendimentoObjeto"
+                      SEGUNDA: 
+                        type: array
+                        items: 
+                          $ref: "#/components/schemas/atendimentoObjeto"
+                      TERÇA: 
+                        type: array
+                        items: 
+                          $ref: "#/components/schemas/atendimentoObjeto"
+                      QUARTA: 
+                        type: array
+                        items: 
+                          $ref: "#/components/schemas/atendimentoObjeto"
+                      QUINTA: 
+                        type: array
+                        items: 
+                          $ref: "#/components/schemas/atendimentoObjeto"
+                      SEXTA: 
+                        type: array
+                        items: 
+                          $ref: "#/components/schemas/atendimentoObjeto"
+                      SABADO: 
+                        type: array
+                        items: 
+                          $ref: "#/components/schemas/atendimentoObjeto"
+                  atendimentoDiaEspecifico: 
+                    type: object
+                    description: Cada dia cadastrado vai ser uma chave com diferentes regras de atendimento dentro. 
+                    properties: 
+                      19-02-2021:
+                        type: array
+                        $ref: "#/components/schemas/atendimentoObjeto"
+                      20-02-2021:
+                        type: array
+                        $ref: "#/components/schemas/atendimentoObjeto"
+  /regraAtendimento/{id}:
+    delete:
+      parameters:
+        - name: id
+          in: path
+          description: Id da regra de atendimento
+          required: true
+          schema:
+            type: string
+            example: "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"
+      description: Exclui regra de atendimento cadastrada de acordo com o id.
+      responses:
+        '204':    
+          description: Sucesso.
+          content:
+            application/json: {}
+  /horariosDisponiveis/listar:
+    post:
+      description: Recupera horários disponivéis dentre o range de data passada via body.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - dataInicio
+                - dataFim
+              properties:
+                dataInicio:
+                  type: string
+                  description:  Inicio de range da Data de atendimento no formato DD-MM-YYYY
+                  example: 25-01-2018
+                dataFim:
+                  type: string
+                  description:  Fim de range da Data de atendimento no formato DD-MM-YYYY
+                  example: 29-01-2018
+      responses:
+        '200':    
+          description: Sucesso.
+          content:
+            application/json: 
+              schema: 
+                type: object
+                properties: 
+                  dia: 
+                    type: object
+                    description: Data de atendimento no formato DD-MM-YYYY
+                    example: "25-01-2018"
+                  intervalos:
+                    $ref: "#/components/schemas/intervalos"
+
+
+components: 
+  schemas:
+    atendimentoObjeto:
+      type: object
+      properties:
+        id: 
+          type: string
+          description: id da regra de atendimento.
+          example: "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"
+        intervalos: 
+          $ref: "#/components/schemas/intervalos"
+    intervalos: 
+      type: array
+      items:
+        type: object
+        properties:
+          inicio: 
+            type: string
+            description: Horário de inicio da consulta
+            example: "09:30"
+          fim: 
+            type: string
+            description: Horário de término da consulta
+            example: "10:30"
+        
