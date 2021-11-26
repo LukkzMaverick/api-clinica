@@ -20,11 +20,10 @@ paths:
                   type: string
                   enum: [ATENDIMENTO_DIARIO, ATENDIMENTO_SEMANAL, ATENDIMENTO_DIA_ESPECIFICO]
                   example: ATENDIMENTO_SEMANAL
-                dia:
-                  type: string 
-                  enum: [DOMINGO, SEGUNDA, TERÇA, QUARTA, QUINTA, SEXTA, SÁBADO]
-                  description: (SOMENTE PARA ATENDIMENTO_SEMANAL) Dia da semana do atendimento
-                  example: SEGUNDA
+                dias:
+                  type: array 
+                  description: (SOMENTE PARA ATENDIMENTO_SEMANAL) Dias da semana do atendimento
+                  example: [SEGUNDA, QUARTA]
                 data: 
                   type: string
                   description: (SOMENTE PARA ATENDIMENTO_DIA_ESPECIFICO) Data de atendimento no formato DD-MM-YYYY
@@ -133,14 +132,16 @@ paths:
           content:
             application/json: 
               schema: 
-                type: object
-                properties: 
-                  dia: 
-                    type: object
-                    description: Data de atendimento no formato DD-MM-YYYY
-                    example: "25-01-2018"
-                  intervalos:
-                    $ref: "#/components/schemas/intervalos"
+                type: array
+                items:
+                  type: object
+                  properties: 
+                    dia: 
+                      type: object
+                      description: Data de atendimento no formato DD-MM-YYYY
+                      example: "25-01-2018"
+                    intervalos:
+                      $ref: "#/components/schemas/intervalos"
 
 
 components: 

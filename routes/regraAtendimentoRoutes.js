@@ -4,5 +4,6 @@ const router = Router()
 
 router.get('/', regraAtendimentoController.index)
 router.post('/', regraAtendimentoController.create)
+router.delete('/:id', regraAtendimentoController.delete)
 
 module.exports = router
