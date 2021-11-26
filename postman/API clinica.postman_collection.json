@@ -1,0 +1,194 @@
+{
+	"info": {
+		"_postman_id": "7c1ae6c2-af03-4670-89bf-66e063fa65dc",
+		"name": "API clinica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Regra Atendimento",
+			"item": [
+				{
+					"name": "CADASTRAR REGRA",
+					"item": [
+						{
+							"name": "Atendimento Diario",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"tipo\": \"ATENDIMENTO_DIARIO\",\r\n    \"intervalos\": [{\"inicio\":\"16:30\",\"fim\":\"16:55\"}],\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/regraAtendimento/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"regraAtendimento",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Atendimento Semanal",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"tipo\": \"ATENDIMENTO_DIARIO\",\r\n    \"intervalos\": [{\"inicio\":\"16:30\",\"fim\":\"16:55\"}],\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/regraAtendimento/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"regraAtendimento",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Atendimento Dia Especifico",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"tipo\": \"ATENDIMENTO_DIARIO\",\r\n    \"intervalos\": [{\"inicio\":\"16:30\",\"fim\":\"16:55\"}],\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/regraAtendimento/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"regraAtendimento",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Excluir Regra Atendimento",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/regraAtendimento/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"regraAtendimento",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "d4079e32-5b1e-4c54-b20a-f0629ec6eb50"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Regras Atendimeto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/regraAtendimento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"regraAtendimento"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Horarios Disponiveis",
+			"item": [
+				{
+					"name": "Horários DIsponiveis",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dataInicio\": \"25-02-2019\",\r\n    \"dataFim\": \"29-02-2019\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/horariosDisponiveis/listar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"horariosDisponiveis",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
